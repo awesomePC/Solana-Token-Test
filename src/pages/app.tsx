@@ -135,40 +135,52 @@ export default function App() {
           />
         </div>
         <div>
-          {!publicKey && isClient && (
-            <div className="flex items-center justify-center gap-4">
-              {wallets.filter(wallet => wallet.readyState === "Installed").length > 0 ? (
-                wallets
-                  .filter(wallet => wallet.readyState === "Installed")
-                  .map(wallet => (
-                    <WalletMultiButton
-                      key={wallet.adapter.name}
-                      onClick={() => select(wallet.adapter.name)}
-                      className="w-64 size-lg font-size-md" // Adjust these classes or properties as necessary
-                    >
-                      {/* You might want to uncomment and adjust the image element if needed */}
-                      {/* <Image
-                        src={wallet.adapter.icon}
-                        alt={wallet.adapter.name}
-                        className="h-6 w-6"
-                      /> */}
-                      {wallet.adapter.name}
-                    </WalletMultiButton>
-                  ))
-              ) : (
-                <WalletMultiButton className="text-sm md:text-lg">
-                  Select Wallet
-                </WalletMultiButton>
-              )}
-            </div>
-          )}
-          { publicKey && isClient && (
-            <div className="flex items-center justify-center gap-4">
-              <WalletMultiButton onClick={disconnect}>
-                {publicKey.toBase58().substring(0, 4)}...{publicKey.toBase58().substring(publicKey.toBase58().length - 4)}
+        {
+          !isClient ? (
+            <></>
+            ) : !publicKey ? (
+              // <div className="flex items-center justify-center gap-4">
+              //     {wallets.filter((wallet) => wallet.readyState === "Installed").length >
+              //     0 ? (
+              //     wallets
+              //         .filter((wallet) => wallet.readyState === "Installed")
+              //         .map((wallet) => (
+              //         <WalletMultiButton
+              //             key={wallet.adapter.name}
+              //             onClick={() => select(wallet.adapter.name)}
+              //             // w="64"
+              //             // size="lg"
+              //             // fontSize="md"
+              //             // leftIcon={
+              //             //   <Image
+              //             //     src={wallet.adapter.icon}
+              //             //     alt={wallet.adapter.name}
+              //             //     h={6}
+              //             //     w={6}
+              //             //   />
+              //             // }
+              //         >
+              //             {wallet.adapter.name}
+              //         </WalletMultiButton>
+              //         ))
+              //     ) : (
+              <WalletMultiButton className="text-sm md:text-lg">
+                Select Wallet
               </WalletMultiButton>
-            </div>
-          )}
+            ) : (
+              // )}
+              // </div>
+              <div className="flex items-center justify-center gap-4">
+                {/* <Text></Text> */}
+                <WalletMultiButton onClick={disconnect}>
+                  {publicKey.toBase58().substring(0, 4)}...
+                  {publicKey
+                    .toBase58()
+                    .substring(publicKey.toBase58().length - 4)}
+                </WalletMultiButton>
+              </div>
+            )
+        }
         </div>
       </div>
       {/* Main Part */}
