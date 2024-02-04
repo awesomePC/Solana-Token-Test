@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import { useMemo } from "react";
 import {
   ConnectionProvider,
-  Wallet,
   WalletProvider,
 } from '@solana/wallet-adapter-react';
 import {
@@ -11,7 +10,6 @@ import {
   // SolflareWalletAdapter,
   // MathWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { useWallet } from '@solana/wallet-adapter-react';
 import { clusterApiUrl } from "@solana/web3.js";
 import {
   WalletModalProvider,

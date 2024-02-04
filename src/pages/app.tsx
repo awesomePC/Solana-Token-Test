@@ -19,7 +19,7 @@ import {
 } from "@solana/spl-token";
 
 import "@solana/wallet-adapter-react-ui/styles.css"; // only needs to be imported once
-import "@solana/wallet-adapter-react-ui/styles.css";
+
 
 export default function App() {
   // You can also provide a custom RPC endpoint
