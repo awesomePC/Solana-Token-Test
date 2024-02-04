@@ -82,12 +82,20 @@ export default function App() {
           console.log("accountInfo:", accountInfo, associatedTokenAddress);
           // Check if the account has been initialized
           if (accountInfo.value) {
-            let balance =
-              accountInfo?.value?.data?.parsed?.info?.tokenAmount?.uiAmount;
-            console.log("$PRINT Token Balance:", balance);
+            if (accountInfo.value && "parsed" in accountInfo.value.data) {
+              let balance =
+                accountInfo?.value?.data?.parsed?.info?.tokenAmount?.uiAmount;
+              console.log("$PRINT Token Balance:", balance);
 
-            // Set Print balance based on the response
-            setPrintBalance(balance);
+              // Set Print balance based on the response
+              setPrintBalance(balance);
+            } else {
+              console.error("Account data is not in the expected format.");
+              console.log("$PRINT Token Balance:", 0);
+
+              // Set Print balance based on the response
+              setPrintBalance(0);
+            }
           } else {
             console.log("The token account does not exist.");
 
@@ -135,52 +143,50 @@ export default function App() {
           />
         </div>
         <div>
-        {
-          !isClient ? (
+          {!isClient ? (
             <></>
-            ) : !publicKey ? (
-              // <div className="flex items-center justify-center gap-4">
-              //     {wallets.filter((wallet) => wallet.readyState === "Installed").length >
-              //     0 ? (
-              //     wallets
-              //         .filter((wallet) => wallet.readyState === "Installed")
-              //         .map((wallet) => (
-              //         <WalletMultiButton
-              //             key={wallet.adapter.name}
-              //             onClick={() => select(wallet.adapter.name)}
-              //             // w="64"
-              //             // size="lg"
-              //             // fontSize="md"
-              //             // leftIcon={
-              //             //   <Image
-              //             //     src={wallet.adapter.icon}
-              //             //     alt={wallet.adapter.name}
-              //             //     h={6}
-              //             //     w={6}
-              //             //   />
-              //             // }
-              //         >
-              //             {wallet.adapter.name}
-              //         </WalletMultiButton>
-              //         ))
-              //     ) : (
-              <WalletMultiButton className="text-sm md:text-lg">
-                Select Wallet
+          ) : !publicKey ? (
+            // <div className="flex items-center justify-center gap-4">
+            //     {wallets.filter((wallet) => wallet.readyState === "Installed").length >
+            //     0 ? (
+            //     wallets
+            //         .filter((wallet) => wallet.readyState === "Installed")
+            //         .map((wallet) => (
+            //         <WalletMultiButton
+            //             key={wallet.adapter.name}
+            //             onClick={() => select(wallet.adapter.name)}
+            //             // w="64"
+            //             // size="lg"
+            //             // fontSize="md"
+            //             // leftIcon={
+            //             //   <Image
+            //             //     src={wallet.adapter.icon}
+            //             //     alt={wallet.adapter.name}
+            //             //     h={6}
+            //             //     w={6}
+            //             //   />
+            //             // }
+            //         >
+            //             {wallet.adapter.name}
+            //         </WalletMultiButton>
+            //         ))
+            //     ) : (
+            <WalletMultiButton className="text-sm md:text-lg">
+              Select Wallet
+            </WalletMultiButton>
+          ) : (
+            // )}
+            // </div>
+            <div className="flex items-center justify-center gap-4">
+              {/* <Text></Text> */}
+              <WalletMultiButton onClick={disconnect}>
+                {publicKey.toBase58().substring(0, 4)}...
+                {publicKey
+                  .toBase58()
+                  .substring(publicKey.toBase58().length - 4)}
               </WalletMultiButton>
-            ) : (
-              // )}
-              // </div>
-              <div className="flex items-center justify-center gap-4">
-                {/* <Text></Text> */}
-                <WalletMultiButton onClick={disconnect}>
-                  {publicKey.toBase58().substring(0, 4)}...
-                  {publicKey
-                    .toBase58()
-                    .substring(publicKey.toBase58().length - 4)}
-                </WalletMultiButton>
-              </div>
-            )
-        }
+            </div>
+          )}
         </div>
       </div>
       {/* Main Part */}
