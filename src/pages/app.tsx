@@ -62,7 +62,8 @@ export default function App() {
 
           // Create a PublicKey object for the SPL Token's mint address
           let mintPublicKey = new PublicKey(
-            "7FctSfSZ9GonfMrybp45hzoQyU71CEjjZFxxoSzqKWT"
+            // "7FctSfSZ9GonfMrybp45hzoQyU71CEjjZFxxoSzqKWT"
+            "kiutgyJRgFk6y8ayNd9PpnYpsU1mPGPhxKGMSFNo4Jy"
           );
 
           // Find the associated token address using the wallet and mint addresses
