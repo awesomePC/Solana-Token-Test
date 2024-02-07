@@ -15,6 +15,7 @@ import {
 import {
   getAssociatedTokenAddress,
   TOKEN_PROGRAM_ID,
+  TOKEN_2022_PROGRAM_ID,
   ASSOCIATED_TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
 
@@ -71,7 +72,7 @@ export default function App() {
             mintPublicKey,
             walletPublicKey,
             false,
-            TOKEN_PROGRAM_ID,
+            TOKEN_2022_PROGRAM_ID,
             ASSOCIATED_TOKEN_PROGRAM_ID
           );
 
@@ -240,7 +241,7 @@ export default function App() {
               className="flex justify-between items-center rounded-[20px] cursor-pointer bg-green-400 bg-opacity-33 py-4 px-6"
               onClick={() =>
                 window.open(
-                  "https://explorer.solana.com/address/7FctSfSZ9GonfMrybp45hzoQyU71CEjjZFxxoSzqKWT/metadata?cluster=devnet",
+                  "https://explorer.solana.com/address/kiutgyJRgFk6y8ayNd9PpnYpsU1mPGPhxKGMSFNo4Jy/metadata?cluster=devnet",
                   "_blank"
                 )
               }
